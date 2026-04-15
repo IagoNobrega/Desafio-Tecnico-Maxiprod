@@ -44,7 +44,7 @@ jobs:
 
       - name: 🧪 Run Unit Tests
         working-directory: tests/backend
-        run: dotnet test MaxiprodTests.csproj --filter Category=Unit --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx" --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura
+        run: dotnet test MaxiprodTests.csproj --configuration Release --filter Category=Unit --verbosity normal --logger "trx;LogFileName=test-results.trx" --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura
 
       - name: 📊 Upload Test Results
         if: always()
@@ -91,7 +91,7 @@ jobs:
 
       - name: 🧪 Run Integration Tests
         working-directory: tests/backend
-        run: dotnet test MaxiprodTests.csproj --filter Category=Integration --no-build --verbosity normal --logger "trx;LogFileName=test-results-integration.trx" || true
+        run: dotnet test MaxiprodTests.csproj --configuration Release --filter Category=Integration --verbosity normal --logger "trx;LogFileName=test-results-integration.trx" || true
         continue-on-error: true
 
       - name: 📊 Upload Test Results

@@ -8,6 +8,7 @@ namespace MaxiprodTests.Unit.Rules
     /// Testes unitários para a regra de negócio:
     /// "Categoria só pode ser usada conforme sua finalidade (receita/despesa/ambas)"
     /// </summary>
+    [Trait("Category", "Unit")]
     public class CategoriaFinalidadeTests
     {
         public enum TipoCategoria

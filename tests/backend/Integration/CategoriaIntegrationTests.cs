@@ -10,6 +10,7 @@ namespace MaxiprodTests.Integration
     /// <summary>
     /// Testes de integração - regra de negócio: categoria por finalidade
     /// </summary>
+    [Trait("Category", "Integration")]
     public class CategoriaFinalidadeIntegrationTests : IAsyncLifetime
     {
         private readonly HttpClient _httpClient;

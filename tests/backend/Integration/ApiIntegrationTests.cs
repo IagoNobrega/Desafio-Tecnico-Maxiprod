@@ -12,6 +12,7 @@ namespace MaxiprodTests.Integration
     /// Testes de integração contra a API real
     /// Foca em validar as regras de negócio através de requisições HTTP
     /// </summary>
+    [Trait("Category", "Integration")]
     public class PessoaApiIntegrationTests : IAsyncLifetime
     {
         private readonly HttpClient _httpClient;

@@ -10,6 +10,7 @@ namespace MaxiprodTests.Unit.Rules
     /// Testes unitários para a regra de negócio:
     /// "Exclusão em cascata de transações ao excluir pessoa"
     /// </summary>
+    [Trait("Category", "Unit")]
     public class ExclusaoCascataTests
     {
         private List<dynamic> transacoesBD = new();

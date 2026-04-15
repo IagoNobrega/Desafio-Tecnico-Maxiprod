@@ -8,6 +8,7 @@ namespace MaxiprodTests.Unit.Rules
     /// Testes unitários para a regra de negócio:
     /// "Menor de idade não pode ter receitas"
     /// </summary>
+    [Trait("Category", "Unit")]
     public class MenorIdadeNaoTemReceitaTests
     {
         [Fact]
