@@ -1,0 +1,32 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AB3BF05-4346-4AA6-1389-037BE0695223}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{C62EED4C-2AC9-F50F-E0BC-649CFEA98BDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaxiprodTests", "tests\backend\MaxiprodTests.csproj", "{ED4D6559-939E-BC7B-5D95-2433B7CF93ED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED4D6559-939E-BC7B-5D95-2433B7CF93ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED4D6559-939E-BC7B-5D95-2433B7CF93ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED4D6559-939E-BC7B-5D95-2433B7CF93ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED4D6559-939E-BC7B-5D95-2433B7CF93ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C62EED4C-2AC9-F50F-E0BC-649CFEA98BDB} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
+		{ED4D6559-939E-BC7B-5D95-2433B7CF93ED} = {C62EED4C-2AC9-F50F-E0BC-649CFEA98BDB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A56350CB-FF0C-4334-AD2F-3FF073DFB985}
+	EndGlobalSection
+EndGlobal

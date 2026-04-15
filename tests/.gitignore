@@ -1,0 +1,53 @@
+# .NET
+bin/
+obj/
+*.csproj.user
+*.lock.json
+*.nuget.props
+*.nuget.targets
+.vs/
+.vscode/
+
+# Test Results
+TestResults/
+/Tests/bin/
+/Tests/obj/
+coverage/
+*.trx
+.nunit
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+dist/
+
+# Frontend Tests
+tests/frontend/coverage/
+tests/frontend/test-results/
+tests/frontend/playwright-report/
+tests/frontend/.test-cache/
+tests/frontend/node_modules/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Playwright
+tests/frontend/test-results/
+tests/frontend/playwright-report/
+tests/frontend/.auth/
+
+# Temp
+tmp/
+temp/
+*.tmp
