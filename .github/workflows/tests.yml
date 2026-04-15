@@ -1,5 +1,9 @@
 name: 🧪 Maxiprod Test Suite - CI/CD
 
+permissions:
+  contents: read
+  checks: write
+
 on:
   push:
     branches: [ main, develop ]
@@ -50,7 +54,7 @@ jobs:
           path: tests/backend/TestResults/
 
       - name: 📊 Publish Test Results
-        if: always()
+        if: always() && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
         uses: EnricoMi/publish-unit-test-result-action@v2
         with:
           files: tests/backend/TestResults/**/*.trx
