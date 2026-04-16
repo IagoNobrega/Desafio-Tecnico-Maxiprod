@@ -143,7 +143,7 @@ cat README.md
 ## 🎓 Tecnologias Utilizadas
 
 ### Backend
-- ✅ **.NET 8.0** - Framework moderno e rápido
+- ✅ **.NET 9.0** - Framework moderno e rápido
 - ✅ **xUnit** - Test framework profissional
 - ✅ **FluentAssertions** - Assertions legíveis
 - ✅ **Moq** - Mocking framework
