@@ -1,0 +1,125 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test-frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: tests/frontend/package-lock.json
+
+    - name: Install dependencies
+      working-directory: tests/frontend
+      run: npm ci
+
+    - name: Run linting
+      working-directory: tests/frontend
+      run: npm run lint
+
+    - name: Run unit tests
+      working-directory: tests/frontend
+      run: npm run test:unit
+
+    - name: Run E2E tests
+      working-directory: tests/frontend
+      run: npm run test:e2e
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-results
+        path: tests/frontend/test-results/
+
+    - name: Upload coverage reports
+      uses: codecov/codecov-action@v3
+      if: success()
+      with:
+        directory: tests/frontend/coverage/
+
+  test-backend:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restore dependencies
+      working-directory: tests/backend
+      run: dotnet restore
+
+    - name: Build
+      working-directory: tests/backend
+      run: dotnet build --no-restore
+
+    - name: Run unit tests
+      working-directory: tests/backend
+      run: dotnet test --no-build --verbosity normal --logger trx
+
+    - name: Run integration tests
+      working-directory: tests/backend
+      run: dotnet test --no-build --verbosity normal --logger trx --filter Category=Integration
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: backend-test-results
+        path: tests/backend/TestResults/
+
+  security-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+
+    - name: Upload Trivy scan results
+      uses: github/codeql-action/upload-sarif@v2
+      if: always()
+      with:
+        sarif_file: 'trivy-results.sarif'
+
+  deploy-staging:
+    needs: [test-frontend, test-backend, security-scan]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
+
+    steps:
+    - name: Deploy to staging
+      run: echo "Deploy to staging environment"
+
+  deploy-production:
+    needs: [test-frontend, test-backend, security-scan]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    steps:
+    - name: Deploy to production
+      run: echo "Deploy to production environment"

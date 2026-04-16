@@ -171,9 +171,9 @@ const App: React.FC = () => {
 
   const renderNav = () => (
     <nav style={{ marginBottom: '20px' }}>
-      <a href="/" onClick={e => { e.preventDefault(); navigate('/'); }}>Pessoas</a>
+      <a href="/" onClick={e => { e.preventDefault(); navigate('/'); }} data-testid="nav-pessoas">Pessoas</a>
       {' | '}
-      <a href="/transacoes" onClick={e => { e.preventDefault(); navigate('/transacoes'); }}>Transações</a>
+      <a href="/transacoes" onClick={e => { e.preventDefault(); navigate('/transacoes'); }} data-testid="nav-transacoes">Transações</a>
     </nav>
   );
 
@@ -189,7 +189,7 @@ const App: React.FC = () => {
   const renderPessoas = () => (
     <div>
       <div style={{ marginBottom: '16px' }}>
-        <button onClick={() => { setShowPessoaForm(true); setEditingPessoa(null); }}>Nova Pessoa</button>
+        <button onClick={() => { setShowPessoaForm(true); setEditingPessoa(null); }} data-testid="btn-nova-pessoa">Nova Pessoa</button>
       </div>
       <table>
         <thead>
@@ -204,15 +204,15 @@ const App: React.FC = () => {
         </thead>
         <tbody>
           {pessoasComTransacoes.map(pessoa => (
-            <tr key={pessoa.id} onClick={() => setSelectedPessoa(pessoa)} data-test="pessoa-row" data-pessoa-id={pessoa.id}>
+            <tr key={pessoa.id} onClick={() => setSelectedPessoa(pessoa)} data-testid="pessoa-row" data-pessoa-id={pessoa.id}>
               <td>{pessoa.id}</td>
               <td>{pessoa.nome}</td>
               <td>{calcularIdade(pessoa.dataNascimento)}</td>
               <td>{pessoa.cpf}</td>
-              <td data-test="transacoes-count">{pessoa.totalTransacoes}</td>
+              <td data-testid="transacoes-count">{pessoa.totalTransacoes}</td>
               <td>
-                <button onClick={e => { e.stopPropagation(); setEditingPessoa(pessoa); setShowPessoaForm(true); }}>Editar</button>
-                <button onClick={e => { e.stopPropagation(); setPessoaToDelete(pessoa); }}>Excluir</button>
+                <button onClick={e => { e.stopPropagation(); setEditingPessoa(pessoa); setShowPessoaForm(true); }} data-testid="btn-editar">Editar</button>
+                <button onClick={e => { e.stopPropagation(); setPessoaToDelete(pessoa); }} data-testid="btn-excluir">Excluir</button>
               </td>
             </tr>
           ))}
@@ -224,7 +224,7 @@ const App: React.FC = () => {
   const renderTransacoes = () => (
     <div>
       <div style={{ marginBottom: '16px' }}>
-        <button onClick={() => setShowTransacaoForm(true)}>Nova Transação</button>
+        <button onClick={() => setShowTransacaoForm(true)} data-testid="btn-nova-transacao">Nova Transação</button>
       </div>
       <table>
         <thead>
@@ -239,7 +239,7 @@ const App: React.FC = () => {
         </thead>
         <tbody>
           {currentTransacoes.map(transacao => (
-            <tr key={transacao.id} data-test="transacao-row" data-pessoa-id={transacao.pessoaId}>
+            <tr key={transacao.id} data-testid="transacao-row" data-pessoa-id={transacao.pessoaId}>
               <td>{transacao.id}</td>
               <td>{transacao.pessoa?.nome}</td>
               <td>{transacao.categoria?.nome}</td>
@@ -275,8 +275,8 @@ const App: React.FC = () => {
               <label htmlFor="cpf">CPF:</label>
               <input id="cpf" name="cpf" type="text" defaultValue={editingPessoa?.cpf ?? ''} required />
             </div>
-            <button type="submit">Salvar</button>
-            <button type="button" onClick={() => { setShowPessoaForm(false); setEditingPessoa(null); }}>Cancelar</button>
+            <button type="submit" data-testid="btn-salvar">Salvar</button>
+            <button type="button" onClick={() => { setShowPessoaForm(false); setEditingPessoa(null); }} data-testid="btn-cancelar">Cancelar</button>
           </form>
         </div>
       )}
@@ -315,8 +315,8 @@ const App: React.FC = () => {
               <label>Descrição:</label>
               <input name="descricao" type="text" value={transacaoForm.descricao} onChange={e => setTransacaoForm(prev => ({ ...prev, descricao: e.target.value }))} required />
             </div>
-            <button type="submit">Salvar Transação</button>
-            <button type="button" onClick={() => setShowTransacaoForm(false)}>Cancelar</button>
+            <button type="submit" data-testid="btn-salvar-transacao">Salvar Transação</button>
+            <button type="button" onClick={() => setShowTransacaoForm(false)} data-testid="btn-cancelar-transacao">Cancelar</button>
           </form>
         </div>
       )}
@@ -325,8 +325,8 @@ const App: React.FC = () => {
           <div style={{ background: 'white', padding: '20px', borderRadius: '8px', minWidth: '320px' }}>
             <h3>Confirmar Exclusão</h3>
             <p>Deseja excluir {pessoaToDelete.nome}? Todas as transações serão removidas.</p>
-            <button data-test="confirm-delete" onClick={handleExcluirPessoa}>Confirmar</button>
-            <button onClick={() => setPessoaToDelete(null)}>Cancelar</button>
+            <button data-testid="confirm-delete" onClick={handleExcluirPessoa}>Confirmar</button>
+            <button onClick={() => setPessoaToDelete(null)} data-testid="btn-cancelar-delete">Cancelar</button>
           </div>
         </div>
       )}
