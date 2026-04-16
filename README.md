@@ -128,7 +128,7 @@ public void Pessoa_Menor_De_Idade_Nao_Pode_Ter_Receita()
 
 ### Pré-requisitos
 
-- **.NET 8.0+** - Backend
+- **.NET 9.0+** - Backend
 - **Node.js 18+** - Frontend
 - **npm ou yarn** - Package manager
 - **API Backend** rodando em `http://localhost:5135`
@@ -537,5 +537,5 @@ Estes testes foram criados como parte do Desafio Técnico Maxiprod.
 
 ---
 
-**Última atualização:** Abril 15, 2026  
+**Última atualização:** Abril 16, 2026  
 **Status:** ✅ Pronto para Análise  
